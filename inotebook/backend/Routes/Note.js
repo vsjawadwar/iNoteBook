@@ -39,4 +39,38 @@ router.post('/addnote', fetchuser, [
 
 });
 
+//Route 3: Update an existing note by using: PUT "/api/notes/updatenote". Login Required
+router.put('/updatenote/:id', fetchuser, [
+    body('title', 'Enter a valid email').isLength({min:3}),
+    body('description', 'Description must be atleast 5 characters').isLength({ min: 10 })
+], async (req, res) => {
+    const {title,description,tag}=req.body;
+    
+    //create new note object
+    const newNote={};
+    if(title){
+        newNote.title=title
+    }
+    if(description){
+        newNote.description=description
+    }
+    if(tag){
+        newNote.tag=tag
+    }
+
+    //Find the note to be updated and update it.
+    let note= await Note.findById(req.params.id); //Need to use await or else it will goes to next line we will get error because of undefined value.
+    if(!note){
+        return res.status(401).send("Not Found");
+    }
+    if(note.user.toString() != req.user.id)
+    {
+        return res.status(401).send("Not Allowed");
+    }
+
+    note= await Note.findByIdAndUpdate(req.params.id,{$set:newNote},{new:true});
+    res.json({note});
+});
+
+
 module.exports = router;
