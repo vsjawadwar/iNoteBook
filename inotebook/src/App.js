@@ -7,9 +7,14 @@ import {
 import Navbar from './Components/Navbar';
 import About from './Components/About';
 import Home from './Components/Home';
+// import NoteState from './context/notes/NoteState';
+// import NoteContext from './context/notes/NoteContext';
+// import NoteContext from './context/notes/NoteContext';
+import NoteState from './context/notes/NoteState';
 function App() {
   return (
     <>
+    <NoteState>
       <BrowserRouter>
       <Navbar/>
       <Routes>
@@ -18,6 +23,7 @@ function App() {
         
       </Routes>
       </BrowserRouter>
+    </NoteState>
     </>
   );
 }
