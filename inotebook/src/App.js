@@ -11,12 +11,14 @@ import Home from './Components/Home';
 // import NoteContext from './context/notes/NoteContext';
 // import NoteContext from './context/notes/NoteContext';
 import NoteState from './context/notes/NoteState';
+import Alert from './Components/Alert';
 function App() {
   return (
     <>
     <NoteState>
       <BrowserRouter>
       <Navbar/>
+      <Alert message="Hello"/>
       <Routes>
         <Route exact path="/Home" element={<Home/>}></Route>
         <Route exact path="/About" element={<About/>}></Route>
