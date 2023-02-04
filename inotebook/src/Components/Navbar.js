@@ -5,7 +5,7 @@ export default function Navbar() {
     let location = useLocation();
     useEffect(() => {
         // If we want to see console.log message empty filter in inspect element
-        console.log(location.pathname);
+        // console.log(location.pathname);
       }, [location]);
     return ( 
         <>
