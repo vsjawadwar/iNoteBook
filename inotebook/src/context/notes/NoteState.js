@@ -55,7 +55,8 @@ const getNotes = async() => {
 
   //Edit Notes
   const editNotes = async (id, title, description, tag) => {
-    //API CALL
+    //API CALL for edit notes
+
     const response = await fetch(`${host}/api/note/updatenote/${id}`, {
       method: 'POST',
       headers: {
