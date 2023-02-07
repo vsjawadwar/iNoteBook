@@ -10,13 +10,13 @@ export default function Notes() {
     getNotes();
    },[]);
     return (
-    <>
+    <div className="container">
     <AddNotes/>
       <div className="row my-3">
       {notes.map((note)=>{
         return <NoteItem key={note._id}note={note}/>;
       })}
       </div>
-    </>
+    </div>
   )
 }
