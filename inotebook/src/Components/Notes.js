@@ -14,7 +14,7 @@ export default function Notes() {
     <AddNotes/>
       <div className="row my-3">
       {notes.map((note)=>{
-        return <NoteItem key={note._id}note={note}/>;
+        return <NoteItem key={note._id} note={note}/>;
       })}
       </div>
     </div>
