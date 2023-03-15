@@ -74,7 +74,10 @@ export default function Notes() {
     </div>
   </div>
 </div>      
-      <div className="row my-3">
+      <div className="row my-3 mx-2">
+        <div className="container">
+          {notes.length===0 && 'No notes to display'}
+        </div>
         {notes.map((note) => {
           return <NoteItem key={note._id} updateNotes={updateNotes} note={note} />
         })}
