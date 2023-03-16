@@ -33,18 +33,8 @@ const NoteState = (props) => {
       },
       body: JSON.stringify({ title, description, tag })
   });
-  const data=await response.json();
-    console.log(data);
+  const note=await response.json();
     //To fix cors we need to install package in backend npm i cors  
-    const note = {
-      "_id": "63d1a9cf40d1e0dd460fe00",
-      "user": "63c5f3c44e2688700984a685",
-      "title": title,
-      "description": description,
-      "tag": tag,
-      "date": "2023-01-25T22:14:39.599Z",
-      "__v": 0
-    };
     setNotes(notes.concat(note));
   }
   //Delete Notes
