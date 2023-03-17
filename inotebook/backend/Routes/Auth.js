@@ -4,7 +4,7 @@ const User = require("../Models/User");
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const JWT_SECREcheT = 'Vishalisagoodbo#y';
+const JWT_SECRET = 'Vishalisagoodbo#y';
 let fetchuser = require('../Middleware/fetchuser');
 //Route : 1
 //Create a user using: POST "/api/auth/createuser". 
@@ -65,7 +65,7 @@ router.post('/login', [
     body('password', 'Password cannot be blank').exists()],
 
     async (req, res) => {
-
+        let Success=false;
         //If there are errors it will return Bad request and the errors.
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -75,11 +75,12 @@ router.post('/login', [
         try {
             let user = await User.findOne({ email });
             if (!user) {
-                return res.status(400).json({ error: "Kindly try to login with correct credentials" });
+                return res.status(400).json({ Success,error: "Kindly try to login with correct credentials" });
             }
             const passwordCompare = await bcrypt.compare(password, user.password);
             if (!passwordCompare) {
-                return res.status(400).json({ error: "Kindly try to login with correct credentials" });
+                Success=false;
+                return res.status(400).json({ Success,error: "Kindly try to login with correct credentials" });
             }
             const data = {
                 user: {
@@ -88,7 +89,8 @@ router.post('/login', [
             }
             const authToken = jwt.sign(data, JWT_SECRET);
             console.log(authToken);
-            res.json({ authToken });
+            Success=true;
+            res.json({ Success,authToken });
         }
         catch (error) {
             console.error(error.message);

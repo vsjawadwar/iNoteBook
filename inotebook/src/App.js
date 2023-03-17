@@ -11,6 +11,8 @@ import Home from './Components/Home';
 // import NoteContext from './context/notes/NoteContext';
 // import NoteContext from './context/notes/NoteContext';
 import NoteState from './context/notes/NoteState';
+import Signup from './Components/Signup';
+import Login from './Components/Login';
 // import Alert from './Components/Alert';
 function App() {
   return (
@@ -22,6 +24,9 @@ function App() {
       <Routes>
         <Route exact path="/Home" element={<Home/>}></Route>
         <Route exact path="/About" element={<About/>}></Route>
+        <Route exact path="/Login" element={<Login/>}></Route>
+        <Route exact path="/Signup" element={<Signup/>}></Route>
+
         
       </Routes>
       </BrowserRouter>
