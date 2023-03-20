@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
-const Signup = () => {
+const Signup = (props) => {
   let navigate=useNavigate();
     // The useHistory() hook has been deprecated and been replaced by the useNavigate() hook in React v6.
     const [credentials,setCredentials]=useState({name:"",email:"",password:"",cpassword:""});
@@ -22,8 +22,9 @@ const Signup = () => {
             //Save the Auth-Token and redirect
             localStorage.setItem('token',json.authtoken);
             navigate("/Home");
+            props.showAlert("Account created successfully","success");
         }else{
-            alert("Invalid Credentials")
+            props.showAlert("Invalid Credentials","danger");
         }
         
     }
