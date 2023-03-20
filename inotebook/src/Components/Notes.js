@@ -3,7 +3,7 @@ import noteContext from '../context/notes/NoteContext';
 import AddNotes from './AddNotes';
 import NoteItem from './NoteItem';
 
-export default function Notes() {
+export default function Notes(props) {
   const context = useContext(noteContext);
   const { notes, getNotes ,editNotes} = context;
   useEffect(() => {
@@ -17,6 +17,7 @@ export default function Notes() {
     console.log("Modal Clicked");
     ref.current.click();
     setNote({id: currentNote._id,etitle: currentNote.title, edescription: currentNote.description, etag: currentNote.tag});
+    
   };
  const handleClick=(e)=>{
   e.preventDefault();
@@ -24,6 +25,7 @@ export default function Notes() {
   refClose.current.click(); 
   // Programatically we are clicking on close button as soon as updation done
   console.log("Updating the note",note);
+  props.showAlert("Updated Successfully","success");
  }
   const onChange=(e)=>{
         
@@ -32,7 +34,7 @@ export default function Notes() {
   return (
     <>
     <div className="container">
-      <AddNotes />
+      <AddNotes showAlert={props.showAlert}/>
       
       
 <button ref={ref}type="button" className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -79,7 +81,7 @@ export default function Notes() {
           {notes.length===0 && 'No notes to display'}
         </div>
         {notes.map((note) => {
-          return <NoteItem key={note._id} updateNotes={updateNotes} note={note} />
+          return <NoteItem key={note._id} updateNotes={updateNotes} note={note} showAlert={props.showAlert} />
         })}
       </div>
     </div>

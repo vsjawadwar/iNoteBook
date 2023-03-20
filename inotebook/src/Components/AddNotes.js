@@ -1,6 +1,6 @@
 import React,{ useContext,useState } from 'react'
 import noteContext from "../context/notes/NoteContext";
-export default function AddNotes() {
+export default function AddNotes(props) {
     const context=useContext(noteContext);
     const {addNotes}=context;
     const [note,setNote]=useState({title:"",description:"",tag:""})
@@ -8,6 +8,7 @@ export default function AddNotes() {
         e.preventDefault();//To prevent the reload page after clicking on submit
         addNotes(note.title,note.description,note.tag);
         setNote({title:"",description:"",tag:""});
+        props.showAlert("Added Successfully","success");
     };
     const onChange=(e)=>{
         

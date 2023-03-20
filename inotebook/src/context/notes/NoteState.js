@@ -33,7 +33,7 @@ const NoteState = (props) => {
       },
       body: JSON.stringify({ title, description, tag })
   });
-  const note=await response.json();
+  const note= await response.json();
     //To fix cors we need to install package in backend npm i cors  
     setNotes(notes.concat(note));
   }
