@@ -2,12 +2,22 @@ import React, { useContext, useEffect,useRef, useState} from 'react'
 import noteContext from '../context/notes/NoteContext';
 import AddNotes from './AddNotes';
 import NoteItem from './NoteItem';
+import { useNavigate } from 'react-router-dom';
 
 export default function Notes(props) {
   const context = useContext(noteContext);
   const { notes, getNotes ,editNotes} = context;
+  let navigate=useNavigate();
   useEffect(() => {
-    getNotes();
+    if(localStorage.getItem('token'))
+    {
+      getNotes();
+    }
+    else
+    {
+      navigate("/Login");
+    }
+    // problem in navigating to login from home without any other errors, it is because I have set the token in previous commits. so go to inspect and go to application tab and just click on clear the site, it will work, as I have now cleared the local storage.
     // eslint-disable-next-line
   }, []);
   const ref=useRef(null);
